@@ -1,5 +1,5 @@
 ## [Mashed]
-### Middlebury College, Computer Science CSCI 701 (Fall 2020)
+
 By Winta Ghirmai and Elva Osorio
 ### about
 Our web application would first prompt the user for their Spotify login details. Then the user would have to agree to our terms and conditions. Once all is settled, the user would be given a list of users that have favorite artists with a percentage depicting how many artists they have in common.   
