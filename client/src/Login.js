@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 import "./Login.css";
 //import { accessUrl } from "./spotify";

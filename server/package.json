@@ -2,7 +2,7 @@
   "name": "project-server",
   "version": "0.1.0",
   "private": true,
-  "description": "Server for ...",
+  "description": "Server for Spotify Dating App",
   "main": "index.js",
   "scripts": {
     "test": "jest --setupFiles dotenv/config",
@@ -14,11 +14,11 @@
   "contributors": [
     "Student1 <student1@middlebury.edu>",
     "Student2 <student2@middlebury.edu>",
-    "Student3 <student2@middlebury.edu>",
-    "Student4 <student3@middlebury.edu>",
-    "Student5 <student4@middlebury.edu>",
-    "Student6 <student5@middlebury.edu>",
-    "Student7 <student6@middlebury.edu>"
+    "Student3 <student3@middlebury.edu>",
+    "Student4 <student4@middlebury.edu>",
+    "Student5 <student5@middlebury.edu>",
+    "Student6 <student6@middlebury.edu>",
+    "Student7 <student7@middlebury.edu>"
   ],
   "license": "Apache-2.0",
   "devDependencies": {
@@ -36,6 +36,9 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "objection": "^2.2.3"
+    "knex": "^3.1.0",
+    "objection": "^2.2.3",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
   }
 }

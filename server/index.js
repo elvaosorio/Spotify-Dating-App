@@ -1,8 +1,3 @@
-
-/* eslint-disable camelcase */
-/* eslint-disable no-console */
-const http = require("http");
-
 const express = require("express");
 const request = require("request");
 const querystring = require("querystring");
@@ -20,6 +15,7 @@ const redirect_uri =
   process.env.REDIRECT_URI || "http://localhost:3001/api/callback";
 
 app.use(bodyParser.json());
+
 app.get("/login", function(req, res) {
   res.redirect(
     "https://accounts.spotify.com/authorize?" +
@@ -44,14 +40,13 @@ app.get("/callback", function(req, res) {
     headers: {
       Authorization:
         "Basic " +
-        new Buffer(
-          process.env.SPOTIFY_CLIENT_ID +
-            ":" +
-            process.env.SPOTIFY_CLIENT_SECRET
+        Buffer.from(
+          process.env.SPOTIFY_CLIENT_ID + ":" + process.env.SPOTIFY_CLIENT_SECRET
         ).toString("base64")
     },
     json: true
   };
+  
   request.post(authOptions, function(error, response, body) {
     var access_token = body.access_token;
     let uri = process.env.FRONTEND_URI || "http://localhost:3001";
@@ -59,69 +54,60 @@ app.get("/callback", function(req, res) {
   });
 });
 
-app.get("/api/users", (request, response, next) => {
+// User API routes
+app.get("/api/users", (req, res, next) => {
   Users.query().then(users => {
-    response.send(users);
-  }, next); // <- Notice the "next" function as the rejection handler
+    res.send(users);
+  }).catch(next); // Proper error handling
 });
 
-app.post("/api/users", (request, response, next) => {
-  const newUser = { ...request.body };
-  console.log(request);
+app.post("/api/users", (req, res, next) => {
+  const newUser = { ...req.body };
   Users.query()
     .insertAndFetch(newUser)
     .then(users => {
-      response.send(users);
-    }, next);
+      res.send(users);
+    }).catch(next);
 });
 
-app.put(
-  '/api/users/:id',
-  (request, response, next) => {
-    const {...updatedUser } = {
-      ...request.body
-    }; // eslint-disable-line no-unused-vars
-    Users.query()
-      .updateAndFetchById(request.params.id, updatedUser)
-      .then((users) => {
-        response.send(users);
-      }, next);
-      console.log(request.params.user_name);
-  }
-);
-/* eslint-disable no-unused-vars */
-app.delete(
-  '/api/users/:id',
-  (request, response, next) => {
-    Users.query()
-      .deleteById(request.params.id)
-      .then((result) => { 
-        response.sendStatus(200);
-      }, next);
-      console.log("request.params.id");
-      console.log(request.params.id);
-  }
-);
-/* eslint-disable no-unused-vars */
-// db-errors provides a consistent wrapper around database errors
+app.put('/api/users/:id', (req, res, next) => {
+  const updatedUser = { ...req.body };
+  Users.query()
+    .updateAndFetchById(req.params.id, updatedUser)
+    .then(users => {
+      res.send(users);
+    }).catch(next);
+});
+
+app.delete('/api/users/:id', (req, res, next) => {
+  Users.query()
+    .deleteById(req.params.id)
+    .then(() => { 
+      res.sendStatus(200);
+    }).catch(next);
+});
+
+// Error handling middleware
 const { wrapError, DBError } = require("db-errors");
 
-app.use((error, request, response, next) => {
-  if (response.headersSent) {
-    next(error);
+app.use((error, req, res, next) => {
+  if (res.headersSent) {
+    return next(error);
   }
+  
   const wrappedError = wrapError(error);
+  
   if (wrappedError instanceof DBError) {
-    response.status(400).send(wrappedError.data || wrappedError.message || {});
+    return res.status(400).send(wrappedError.data || wrappedError.message || {});
   } else {
-    response
-      .status(wrappedError.statusCode || wrappedError.status || 500)
-      .send(wrappedError.data || wrappedError.message || {});
+    return res.status(wrappedError.statusCode || wrappedError.status || 500)
+              .send(wrappedError.data || wrappedError.message || {});
   }
 });
 
+// Start the server
+const server = app.listen(process.env.PORT || 3001, () => {
+  console.log("Listening on port %d", server.address().port); // eslint-disable-line no-console
+});
 
-//const server = http.createServer(app).listen(process.env.PORT || 3001);
 module.exports = app;
-
-//console.log("Listening on port %d", server.address().port); // eslint-disable-line no-console

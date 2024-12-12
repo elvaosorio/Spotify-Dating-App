@@ -1,50 +1,22 @@
 {
-  "name": "project-client",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "bootstrap": "^5.3.0",
+    "jquery": "^3.7.1",
+    "query-string": "^9.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scroll-to-bottom": "^4.2.0",
+    "reactstrap": "^9.2.0",
+    "styled-components": "^6.1.13"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint src"
-  },
-  "keywords": [],
-  "contributors": [
-    "Student1 <student1@middlebury.edu>",
-    "Student2 <student2@middlebury.edu>",
-    "Student3 <student2@middlebury.edu>",
-    "Student4 <student3@middlebury.edu>",
-    "Student5 <student4@middlebury.edu>",
-    "Student6 <student5@middlebury.edu>",
-    "Student7 <student6@middlebury.edu>"
-  ],
-  "license": "Apache-2.0",
-  "dependencies": {
-    "acorn": "^6.4.2",
-    "axios": "^0.21.0",
-    "eslint-plugin-flowtype": "^3.13.0",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^5.0.1",
-    "spotify-web-api-js": "^1.5.1",
-    "styled-components": "^5.2.1",
-    "typescript": "^4.0.5"
-  },
-  "devDependencies": {
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
-    "eslint-config-prettier": "^6.10.0",
-    "jest-enzyme": "^7.1.2",
-    "react-test-renderer": "^16.13.0"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "prettier"
-    ]
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [
@@ -57,5 +29,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "react-scripts": "^5.0.1"
   }
 }

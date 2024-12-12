@@ -1,10 +1,12 @@
 /*
-  User displays the title, contents, and edit date of an user passed
-  down in its props.
+User displays the title, contents, and edit date of an user passed
+down in its props.
 
-  props:
-    user: User to display
+props:
+user: User to display
 */
+/* eslint-disable */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';

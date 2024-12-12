@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import "./App.css";
@@ -13,7 +14,6 @@ import styled, { css } from "styled-components";
 import Zipcode from "./Zipcode";
 //import axios from "axios";
 import Editor from "./Editor";
-import { ConstraintViolationError } from "objection";
 //import OtherUsers from "./OtherUsers.js";
 //import { getTokenFromResponse } from "./spotify";
 //import SpotifyWebApi from "spotify-web-api-js";

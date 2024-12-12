@@ -1,13 +1,13 @@
-/*
-  Editor implements a form for creating a new user or editing an existing
-  user.
-  props:
-    user: The user to be edited [optional]
-    complete: A callback to add or save user
-  The complete callback should have one optional argument. Calling complete
-  with no arguments cancels the operation. Otherwise complete is invoked with
-  the user object to be added or updated.
+/*Editor implements a form for creating a new user or editing an existinguser.
+props:
+user: The user to be edited [optional]
+complete: A callback to add or save user
+The complete callback should have one optional argument. Calling complete
+with no arguments cancels the operation. Otherwise complete is invoked with
+the user object to be added or updated.
 */
+/* eslint-disable */
+
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";

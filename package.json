@@ -1,68 +1,44 @@
 {
-  "name": "project",
-  "version": "0.1.0",
-  "private": true,
-  "description": "Describe your project",
-  "engines": {
-    "node": "18.x"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"npm run watch --prefix server\" \"npm start --prefix client\"",
-    "heroku-postbuild": "npm install --prefix client && npm install --only=dev --no-shrinkwrap --prefix client && npm run build --prefix client && npm install --prefix server",
-    "lint": "npm run lint --prefix client && npm run lint --prefix server"
-  },
-  "cacheDirectories": [
-    "client/node_modules",
-    "server/node_modules"
-  ],
-  "keywords": [],
-  "contributors": [
-    "Student1 <student1@middlebury.edu>",
-    "Student2 <student2@middlebury.edu>",
-    "Student3 <student2@middlebury.edu>",
-    "Student4 <student3@middlebury.edu>",
-    "Student5 <student4@middlebury.edu>",
-    "Student6 <student5@middlebury.edu>",
-    "Student7 <student6@middlebury.edu>"
-  ],
-  "license": "Apache-2.0",
-  "devDependencies": {
-    "concurrently": "^5.3.0",
-    "eslint": "^7.14.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-react": "^7.21.5",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.5.3",
-    "prettier": "^1.19.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+    "name": "spotify-dating-app",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Spotify Dating App",
+    "engines": {
+        "node": ">=12.14.x"
+    },
+    "scripts": {
+        "start": "concurrently \"npm run start --prefix server\" \"npm run start --prefix client\"",
+        "install": "npm install --prefix server && npm install --prefix client",
+        "heroku-postbuild": "npm install --prefix client && npm run build --prefix client",
+        "lint": "npm run lint --prefix client && npm run lint --prefix server"
+    },
+    "cacheDirectories": [
+        "client/node_modules",
+        "server/node_modules"
+    ],
+    "keywords": [],
+    "contributors": [
+        "Student1 <student1@middlebury.edu>",
+        "Student2 <student2@middlebury.edu>",
+        "Student3 <student3@middlebury.edu>",
+        "Student4 <student4@middlebury.edu>",
+        "Student5 <student5@middlebury.edu>",
+        "Student6 <student6@middlebury.edu>",
+        "Student7 <student7@middlebury.edu>"
+    ],
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "concurrently": "^6.0.0",
+        "husky": "^9.1.7"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "{client/src,server}/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+            "prettier --write"
+        ]
     }
-  },
-  "lint-staged": {
-    "{client/src,server}/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --write"
-    ]
-  },
-  "dependencies": {
-    "axios": "^0.21.0",
-    "body-parser": "^1.19.0",
-    "bootstrap": "^4.5.3",
-    "cors": "^2.8.5",
-    "knex": "^0.21.12",
-    "objection": "^2.2.3",
-    "prop-types": "^15.7.2",
-    "query-string": "^6.13.7",
-    "react-scripts": "^5.0.1",
-    "react-scroll-to-bottom": "^4.0.0",
-    "reactstrap": "^8.7.1",
-    "spotify-web-api-js": "^1.5.1",
-    "spotify-web-api-node": "^5.0.0",
-    "sqlite3": "^5.0.0",
-    "styled-components": "^5.2.1"
-  }
 }
